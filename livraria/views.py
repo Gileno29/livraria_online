@@ -17,9 +17,12 @@ def getResponse(url):
    return None
 
 def index(request):
+    dados=request.session.get('dados')
     
-
+    if dados:
+         return render(request, 'index.html', dados)
     data = getResponse(URL_BASE)
+
     if data != None:
         dados={'dados': data}
     return render(request, 'index.html', dados)
@@ -27,9 +30,6 @@ def index(request):
 
 def details(request, id):
 
-    '''response= requests.request("GET", URL_BASE+str(id))
-    if response.status_code==200:
-        data= json.loads(response.content)'''
     data=getResponse(URL_BASE+str(id))
     dados={'dados': data}
    
@@ -41,7 +41,18 @@ def find(request):
         tipo= request.POST.get('tipoSelecao')
         print("meu tipo de selecao", tipo)
         if int(tipo)==1:
-            url_busca=URL_BASE+'q'+'subject:'
-            getResponse(URL_BASE)
+            url_busca=URL_BASE+'subject:'+'+'+request.POST.get('filtro')
+            data=getResponse(url_busca)
+            dados={'dados': data}
+            request.session['dados'] = dados
+            return redirect('/')
+        
+        if int(tipo)==2:
+            url_busca= URL_BASE+'inauthor:'+'+'+request.POST.get('filtro')
+            data=getResponse(url_busca)
+            dados={'dados': data}
+            request.session['dados'] = dados
+            return redirect('/')
+        
 
     return redirect('/')
