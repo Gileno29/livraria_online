@@ -13,6 +13,22 @@ cd livraria_online
 
 ###
 
+### instalando e configurando o banco de dados
+```bash
+    sudo apt-get install postgresql
+
+    su postgres
+
+    psql
+
+    create role userlivraria login password 'livraria';
+
+    create database dblivraria owner userlivraria;
+
+    \q
+
+```
+
 ### rodando o projeto
 ```bash
 # Criar ambiente virtual
@@ -25,6 +41,8 @@ source livraria-venv/bin/activate  # No Windows use `venv\Scripts\activate`
 pip install -r requirements.txt
 
 #Rodar a aplicação em modo de desenvolvimento
+python manage.py makemigrations
+python manage.py migrate
 
 python manage.py runserver
 ```
