@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 import requests
 import json
+from . import models
 # Create your views here.
 KEY_GOOGLE='AIzaSyAcbqEtwJ9dUexv8q5RoZXzuXGxCr40jME'
 
@@ -66,3 +67,33 @@ def find(request):
 
 
     return redirect('/')
+
+
+def addCarrinho(request, id):
+    c=models.Carrinho()
+    c.item=id
+    c.save()
+
+    return redirect('/')
+
+def verCarrinho(request):
+    dados=[]
+    itens= models.Carrinho.objects.filter(comprado=False)
+    for i in itens:
+        dados.append(getResponse(URL_BASE+str(i.item)))
+   
+    produtos=[]
+    count=0
+    for i in dados:
+
+        produto={'titulo':i[0]['volumeInfo']['title'],
+                          'categorias':i[0]['volumeInfo']['categories'],
+                          'imagem':i[0]['volumeInfo']['imageLinks']['thumbnail']  }
+        
+        produtos.append(produto)
+    
+    
+       # print("esse é o meu produto: ",dados[0]['volumeInfo']['title'])
+    print(produtos)
+    produtos={'produtos':produtos}
+    return render(request,'carrinho.html' , produtos )

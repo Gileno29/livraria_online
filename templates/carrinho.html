@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<h1>Seu Carrinho</h1>
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Produto</th>
+        <th>Quantidade</th>
+        <th>Preço</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in produtos %}
+      <tr>
+        <td><img src="{{ item.imagem }}" alt="{{ item.titulo }}" class="img-fluid"></td>
+        <td>{{ item.quantidade }}</td>
+        <td>R$ {{ item.preco }}</td>
+        <td>
+          <a href="" class="btn btn-sm btn-danger">Remover</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2"></td>
+        <td><strong>Total:</strong></td>
+        <td><strong>R$ {{ total }}</strong></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>
+<a href="finalizar/" class="btn btn-danger">Finalizar Compra</a>
+<a href="/" class="btn btn-success">Voltar</a>
+
+{% endblock %}
