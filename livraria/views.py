@@ -83,7 +83,6 @@ def verCarrinho(request):
         dados.append(getResponse(URL_BASE+str(i.item)))
    
     produtos=[]
-    count=0
     for i in dados:
 
         produto={'titulo':i[0]['volumeInfo']['title'],
@@ -93,7 +92,6 @@ def verCarrinho(request):
         produtos.append(produto)
     
     
-       # print("esse é o meu produto: ",dados[0]['volumeInfo']['title'])
-    print(produtos)
+   # print(produtos)
     produtos={'produtos':produtos}
     return render(request,'carrinho.html' , produtos )

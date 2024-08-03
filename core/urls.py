@@ -24,6 +24,7 @@ urlpatterns = [
     path('detalhes/<str:id>', views.details, name='detalhes'),
     path('buscar/', views.find, name='buscar'),
     path('carrinho/', views.verCarrinho, name='carrinho'),
-    path('addcarrinho/<str:id>', views.addCarrinho, name='addcarrinho')
+    path('addcarrinho/<str:id>', views.addCarrinho, name='addcarrinho'),
+    #path('removecarrinho/<int:id>', views.removeCarrinho, name='removecarrinho')
     
 ]
