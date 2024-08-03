@@ -25,4 +25,5 @@ urlpatterns = [
     path('buscar/', views.find, name='buscar'),
     path('carrinho/', views.verCarrinho, name='carrinho'),
     path('addcarrinho/<str:id>', views.addCarrinho, name='addcarrinho')
+    
 ]
