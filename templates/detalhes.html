@@ -1,18 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">   
 
-            <img src="{{ livro.imagem }}" class="img-fluid" alt="{{ livro.titulo }}">
-        </div>
-        <div class="col-md-6">
-            <h2>{{ livro.titulo }}</h2>
-            <p><strong>Autor:</strong> {{ livro.autor }}</p>
-            <p><strong>Editora:</strong> {{ livro.editora }}</p>
-            <p><strong>Ano de publicação:</strong> {{ livro.ano }}</p>
-            <p><strong>Sinopse:</strong> {{ livro.sinopse }}</p>
+    <div class="row">
+        {% for livro in dados %}
+            <div class="col-md-6">   
+
+                <img src="{{ livro.volumeInfo.imageLinks.thumbnail }}" class="img-fluid rounded" alt="{{ livro.titulo }}">
+            </div>
+            <div class="col-md-6">
+                
+                    <h2>{{ livro.volumeInfo.title }}</h2>
+                        {%for a in livro.volumeInfo.authors %}
+                            <p class="text-muted"> <strong>Autor:</strong> {{ a }}</p>
+                        {% endfor %}
+                    <hr>
+                    <p class="card-text"><strong>Editora:</strong> {{ livro.volumeInfo.publisher }}</p>
+                    <p class="card-text"><strong>Ano:</strong> {{ livro.volumeInfo.publishedDate }}</p>
+                    <p class="card-text"><strong>Numero de paginas: {{ livro.volumeInfo.pageCount}}</strong></p>
+                    <p class="card-text"><strong>idioma: {{ livro.volumeInfo.language}}</strong></p>
+                    <p class="card-text"><strong>Sinopse:</strong> {{ livro.volumeInfo.description }}</p>
+                    <p class="card-text"><strong>Disponivel para compra?:</strong> {% if  livro.saleInfo.saleability == 'NOT_FOR_SALE' %} Nao Disponivel {% else %} disponivel {% endif %}</p>
+                    <a href="/" class="btn btn-primary">Voltar</a>
+        {% endfor %}
         </div>
     </div>
 </div>

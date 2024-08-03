@@ -21,4 +21,6 @@ from livraria import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
+    path('detalhes/<str:id>', views.details, name='detalhes'),
+    path('buscar/', views.find, name='buscar')
 ]

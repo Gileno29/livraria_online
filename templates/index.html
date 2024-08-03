@@ -24,7 +24,7 @@
 
                             {% endif %}
                         </p>
-                        <a href="detalhes/?id={{ livro.id }}"  class="mr-2"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                        <a href="{% url 'detalhes' id=livro.id %}"  class="mr-2"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
                         <a href="compra/?id={{ evento.id }}" class="mr-2"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>
                     </div>
                 </div>
