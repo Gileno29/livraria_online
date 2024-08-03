@@ -1,0 +1,35 @@
+
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row justify-content-center align-items-center">
+        {% for livro in dados %}
+            <div class="col-md-2">
+                <div class="card mx-auto mt-2">
+                    <img src="{{ livro.volumeInfo.imageLinks.thumbnail }}" class="card-img-top img-fluid" alt="{{ livro.volumeInfo.title }}" style="max-width: 200px; max-height: 120px;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ livro.volumeInfo.title }}</h5>
+                        <p class="card-text"> Autores:
+                            {% for a in livro.volumeInfo.authors %}
+                            {{ a }}<br>
+                            {% endfor %}
+                        </p>
+                        <p class="card-text">
+                            {% if livro.volumeInfo.categories %}
+                                Categorias:
+                                {% for a in livro.volumeInfo.categories %}
+                                {{ a }}<br>
+                                {% endfor %}
+                            {% else %}
+                                Categorias: Sem Categoria
+
+                            {% endif %}
+                        </p>
+                        <a href="detalhes/?id={{ livro.id }}"  class="mr-2"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                        <a href="compra/?id={{ evento.id }}" class="mr-2"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

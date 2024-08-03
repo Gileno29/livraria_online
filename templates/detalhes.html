@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">   
+
+            <img src="{{ livro.imagem }}" class="img-fluid" alt="{{ livro.titulo }}">
+        </div>
+        <div class="col-md-6">
+            <h2>{{ livro.titulo }}</h2>
+            <p><strong>Autor:</strong> {{ livro.autor }}</p>
+            <p><strong>Editora:</strong> {{ livro.editora }}</p>
+            <p><strong>Ano de publicação:</strong> {{ livro.ano }}</p>
+            <p><strong>Sinopse:</strong> {{ livro.sinopse }}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
