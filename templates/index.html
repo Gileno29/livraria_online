@@ -13,11 +13,11 @@
                             {{ a }}<br>
                             {% endfor %}
                         </p>
-                        <p class="card-text">
+                        <p class="card-text"> Data publicacao:{{ livro.volumeInfo.publishedDate }}</p>
                             {% if livro.volumeInfo.categories %}
                                 Categorias:
                                 {% for a in livro.volumeInfo.categories %}
-                                {{ a }}<br>
+                                    {{ a }}
                                 {% endfor %}
                             {% else %}
                                 Categorias: Sem Categoria
